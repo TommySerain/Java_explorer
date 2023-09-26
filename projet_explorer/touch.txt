@@ -1,0 +1,2 @@
+Ceci est le contenu de mon fichier texte.
+Vous pouvez ajouter plus de lignes si nécessaire.
