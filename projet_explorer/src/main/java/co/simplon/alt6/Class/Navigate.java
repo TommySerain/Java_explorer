@@ -43,28 +43,28 @@ public class Navigate {
                 scanner.close();
             }
 
-            if (userInput.equals("touch")) {
+            String[] fileAction = userInput.split("\\s+"); // Diviser sur les espaces
+
+            // Vérifier si "touch" est le premier mot
+            if (fileAction.length > 0 && fileAction[0].equals("touch")) {
                 try {
                     this.path = oldPath;
-                    String name = this.path + userInput + ".txt";
+                    String name = this.path + fileAction[1];
                     // Créez un objet File pour représenter le fichier
                     File file = new File(name);
-
-                    // Créez un objet FileWriter pour écrire dans le fichier
-                    FileWriter writer = new FileWriter(file);
-
-                    // Écrivez le contenu dans le fichier
-                    writer.write("Ceci est le contenu de mon fichier texte.");
-                    writer.write("\nVous pouvez ajouter plus de lignes si nécessaire.");
-
-                    // Fermez le FileWriter pour libérer les ressources
-                    writer.close();
-
-                    System.out.println("Fichier créé avec succès : " + userInput);
-                } catch (IOException e) {
+                    if (!file.exists()) {
+                        // Créez le fichier
+                        if (file.createNewFile()) {
+                            System.out.println("Le fichier a été créé avec succès.");
+                        } else {
+                            System.out.println("Impossible de créer le fichier.");
+                        }
+                    } else {
+                        System.out.println("Le fichier existe déjà.");
+                    }
+                } catch (Exception e) {
                     System.err.println("Une erreur s'est produite lors de la création du fichier : " + e.getMessage());
                 }
-
             }
         }
     }
