@@ -1,6 +1,7 @@
 package co.simplon.alt6.Class;
 
 import java.io.File;
+import java.sql.Date;
 
 public class FileHandler {
     private String path;
@@ -11,8 +12,22 @@ public class FileHandler {
         this.fileName = fileName;
     }
 
-    public void read() {
+    public void properties() {
+        String name = this.path + this.fileName;
+        File file = new File(name);
+        if (file.exists()) {
+            String fileName = file.getName();
+            long fileSize = file.length();
+            String absolutePath = file.getAbsolutePath();
+            Date lastModified = new Date(file.lastModified());
 
+            System.out.println("Nom du fichier : " + fileName);
+            System.out.println("Taille du fichier : " + fileSize + " octets");
+            System.out.println("Chemin absolu du fichier : " + absolutePath);
+            System.out.println("Dernière modification du fichier : " + lastModified);
+        } else {
+            System.out.println("Le fichier n'existe pas.");
+        }
     }
 
     public void createFolder() {
