@@ -13,8 +13,8 @@ public class Navigate {
 
     public void ShowFilesList() {
         String[] pathnames;
-        File f = new File(this.path);
-        pathnames = f.list();
+        File file = new File(this.path);
+        pathnames = file.list();
 
         for (String pathname : pathnames) {
             System.out.println(pathname);
@@ -29,16 +29,28 @@ public class Navigate {
             this.ShowFilesList();
             Scanner scanner = new Scanner(System.in);
 
-            System.out.print("Entrez le nom d'un dossier : ");
-            // Lisez l'entrée de l'utilisateur
+            System.out.print("(" + this.path + ")" + " => ");
+
             userInput = scanner.nextLine();
 
-            // Affichez ce que l'utilisateur a saisi
             System.out.println("Vous avez saisi : " + userInput);
             this.path += userInput + "/";
 
             if (userInput.equals("exit")) {
                 scanner.close();
+            }
+            if (userInput.equals("..")) {
+                String newPath = "/";
+                String[] pathSplit = this.path.split("/");
+                for (int i = 0; i < pathSplit.length - 2; i++) {
+                    newPath += pathSplit[i];
+                }
+                System.out.println(newPath);
+                if (!newPath.equals("/")) {
+                    this.path = newPath + "/";
+                } else {
+                    this.path = newPath;
+                }
             }
 
             String[] fileAction = userInput.split("\\s+"); // Diviser sur les espaces
@@ -48,13 +60,24 @@ public class Navigate {
                 this.path = oldPath;
                 FileHandler fileHandler = new FileHandler(this.path, fileAction[1]);
                 if (fileAction[0].equals("touch")) {
-                    fileHandler.create();
+                    fileHandler.createFile();
+                }
+                if (fileAction[0].equals("mkdir")) {
+                    fileHandler.createFolder();
                 }
                 if (fileAction[0].equals("del")) {
-                    fileHandler.delete();
+                    fileHandler.deleteFile();
+                }
+                if (fileAction[0].equals("rmdir")) {
+                    fileHandler.deleteFolderAndContents();
                 }
                 if (fileAction[0].equals("change")) {
-                    // FileHandler.updateFileName();
+                    if (fileAction.length > 2) {
+                        fileHandler.updateFileName(fileAction[2]);
+                    } else {
+                        System.out.println("Veuillez saisir change fichierChoisi fichierDestination");
+                    }
+
                 }
             }
 
