@@ -65,6 +65,9 @@ public class Navigate {
                 if (fileAction[0].equals("mkdir")) {
                     fileHandler.createFolder();
                 }
+                if (fileAction[0].equals("prop")) {
+                    fileHandler.properties();
+                }
                 if (fileAction[0].equals("del")) {
                     fileHandler.deleteFile();
                 }
