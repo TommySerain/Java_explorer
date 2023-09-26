@@ -1,8 +1,6 @@
 package co.simplon.alt6.Class;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Navigate {
@@ -45,27 +43,21 @@ public class Navigate {
 
             String[] fileAction = userInput.split("\\s+"); // Diviser sur les espaces
 
-            // Vérifier si "touch" est le premier mot
-            if (fileAction.length > 0 && fileAction[0].equals("touch")) {
-                try {
-                    this.path = oldPath;
-                    String name = this.path + fileAction[1];
-                    // Créez un objet File pour représenter le fichier
-                    File file = new File(name);
-                    if (!file.exists()) {
-                        // Créez le fichier
-                        if (file.createNewFile()) {
-                            System.out.println("Le fichier a été créé avec succès.");
-                        } else {
-                            System.out.println("Impossible de créer le fichier.");
-                        }
-                    } else {
-                        System.out.println("Le fichier existe déjà.");
-                    }
-                } catch (Exception e) {
-                    System.err.println("Une erreur s'est produite lors de la création du fichier : " + e.getMessage());
+            System.out.println(fileAction.length);
+            if (fileAction.length > 1) {
+                this.path = oldPath;
+                FileHandler fileHandler = new FileHandler(this.path, fileAction[1]);
+                if (fileAction[0].equals("touch")) {
+                    fileHandler.create();
+                }
+                if (fileAction[0].equals("del")) {
+                    fileHandler.delete();
+                }
+                if (fileAction[0].equals("change")) {
+                    // FileHandler.updateFileName();
                 }
             }
+
         }
     }
 }
