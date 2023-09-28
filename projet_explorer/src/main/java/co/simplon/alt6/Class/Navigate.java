@@ -1,7 +1,6 @@
 package co.simplon.alt6.Class;
 
 import java.io.File;
-import java.util.List;
 import java.util.Scanner;
 
 public class Navigate {
@@ -87,5 +86,13 @@ public class Navigate {
             }
 
         }
+    }
+
+    public String getPath() {
+        return this.path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 }

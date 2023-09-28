@@ -12,7 +12,7 @@ public class FileHandler {
         this.fileName = fileName;
     }
 
-    public void properties() {
+    public FileProperties properties() {
         String name = this.path + this.fileName;
         File file = new File(name);
         if (file.exists()) {
@@ -20,13 +20,16 @@ public class FileHandler {
             long fileSize = file.length();
             String absolutePath = file.getAbsolutePath();
             Date lastModified = new Date(file.lastModified());
+            FileProperties fileProperties = new FileProperties(fileName, fileSize, absolutePath, lastModified);
 
             System.out.println("Nom du fichier : " + fileName);
             System.out.println("Taille du fichier : " + fileSize + " octets");
             System.out.println("Chemin absolu du fichier : " + absolutePath);
             System.out.println("Dernière modification du fichier : " + lastModified);
+            return fileProperties;
         } else {
             System.out.println("Le fichier n'existe pas.");
+            return null;
         }
     }
 
