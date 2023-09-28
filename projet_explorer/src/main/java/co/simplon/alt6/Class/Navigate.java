@@ -1,6 +1,7 @@
 package co.simplon.alt6.Class;
 
 import java.io.File;
+import java.util.List;
 import java.util.Scanner;
 
 public class Navigate {
@@ -11,7 +12,7 @@ public class Navigate {
         this.path = path;
     }
 
-    public void ShowFilesList() {
+    public String[] ShowFilesList() {
         String[] pathnames;
         File file = new File(this.path);
         pathnames = file.list();
@@ -19,6 +20,7 @@ public class Navigate {
         for (String pathname : pathnames) {
             System.out.println(pathname);
         }
+        return pathnames;
     }
 
     public void Browse() {

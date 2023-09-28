@@ -62,7 +62,7 @@ public class NavigateGui extends Application {
 
         Rectangle rectangleImage = new Rectangle(400, 300);
         Image backgroundImage = new Image("fond_explorateur.jpg");
-        ImageView viewBackgroundImage = new ImageView();
+//        ImageView viewBackgroundImage = new ImageView();
         rectangleImage.setFill(new ImagePattern(backgroundImage));
 
         HBox hBox1 = new HBox();
@@ -91,7 +91,7 @@ public class NavigateGui extends Application {
         vbox1.setPadding(new Insets(50));
         ListView<String> listView1 = new ListView<>();
         Navigate navigate = new Navigate("/");
-        listView1.getItems().addAll("Rep1", "Rep2");
+        listView1.getItems().addAll(navigate.ShowFilesList());
         vbox1.getChildren().addAll(listView1, folder, file, rectangleImage);
         borderPaneRoot.setCenter(vbox1);
 
