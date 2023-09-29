@@ -147,7 +147,7 @@ public class NavigateGui extends Application {
         });
 
         file.setOnAction(e -> {
-            String selectedValue = listView1.getSelectionModel().getSelectedItem();
+            listView1.getSelectionModel().getSelectedItem();
             FileHandler file1 = new FileHandler(navigate.path);
             if (!inputText.getText().isEmpty()) {
                 file1.createFile(inputText.getText());
@@ -158,7 +158,7 @@ public class NavigateGui extends Application {
         });
 
         folder.setOnAction(e -> {
-            String selectedValue = listView1.getSelectionModel().getSelectedItem();
+            listView1.getSelectionModel().getSelectedItem();
             FileHandler file1 = new FileHandler(navigate.path);
             if (!inputText.getText().isEmpty()) {
                 file1.createFolder(inputText.getText());
