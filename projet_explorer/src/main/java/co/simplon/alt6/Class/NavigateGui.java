@@ -1,28 +1,18 @@
 package co.simplon.alt6.Class;
 
 import javafx.application.Application;
-//import javafx.fxml.FXMLLoader;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import jdk.javadoc.internal.doclets.formats.html.Navigation;
-import org.w3c.dom.css.Rect;
 import java.io.IOException;
-import java.util.Stack;
 
 public class NavigateGui extends Application {
     public boolean isDirectory(String fileName) {
@@ -158,7 +148,7 @@ public class NavigateGui extends Application {
 
         file.setOnAction(e -> {
             String selectedValue = listView1.getSelectionModel().getSelectedItem();
-            FileHandler file1 = new FileHandler(navigate.path, selectedValue);
+            FileHandler file1 = new FileHandler(navigate.path);
             if (!inputText.getText().isEmpty()) {
                 file1.createFile(inputText.getText());
                 listView1.getItems().clear();
@@ -169,7 +159,7 @@ public class NavigateGui extends Application {
 
         folder.setOnAction(e -> {
             String selectedValue = listView1.getSelectionModel().getSelectedItem();
-            FileHandler file1 = new FileHandler(navigate.path, selectedValue);
+            FileHandler file1 = new FileHandler(navigate.path);
             if (!inputText.getText().isEmpty()) {
                 file1.createFolder(inputText.getText());
                 listView1.getItems().clear();
@@ -180,7 +170,7 @@ public class NavigateGui extends Application {
 
         delete.setOnAction(e -> {
             String selectedValue = listView1.getSelectionModel().getSelectedItem();
-            FileHandler file1 = new FileHandler(navigate.path, selectedValue);
+            FileHandler file1 = new FileHandler(navigate.path);
             file1.deleteFolderAndContents(selectedValue);
             listView1.getItems().clear();
             listView1.getItems().add("..");
@@ -189,7 +179,7 @@ public class NavigateGui extends Application {
 
         update.setOnAction(e -> {
             String selectedValue = listView1.getSelectionModel().getSelectedItem();
-            FileHandler file1 = new FileHandler(navigate.path, selectedValue);
+            FileHandler file1 = new FileHandler(navigate.path);
             file1.updateFileName(selectedValue, inputText.getText());
             listView1.getItems().clear();
             listView1.getItems().add("..");
@@ -198,7 +188,7 @@ public class NavigateGui extends Application {
 
         properties.setOnAction(e -> {
             String selectedValue = listView1.getSelectionModel().getSelectedItem();
-            FileHandler file1 = new FileHandler(navigate.path, selectedValue);
+            FileHandler file1 = new FileHandler(navigate.path);
             textProperties.setText(file1.properties(selectedValue));
             listView1.getItems().clear();
             listView1.getItems().add("..");

@@ -17,19 +17,16 @@ public class FileHandlerTest {
     void setUp() {
         path = "C:\\Users\\Utilisateur\\Desktop\\CDA\\Simplon\\Java\\dev\\projet_explorateur\\projet_explorer\\src\\test\\java\\co\\simplon\\alt6\\Class\\navigateTest\\";
         fileName = "test.txt";
-        fileHandler = new FileHandler(path, fileName);
+        fileHandler = new FileHandler(path);
         fileSize = 0;
-        lastModif = "2023-09-28";
+        lastModif = "2023-09-29";
     }
 
     @Test
     void testProperties() {
-        // FileProperties properties = fileHandler.properties();
-        // String tms = properties.getLastModified().toString();
-        // assertEquals(fileName, properties.getFileName());
-        // assertEquals(fileSize, properties.getFileSize());
-        // assertEquals(path + fileName, properties.getAbsolutePath());
-        // assertEquals(lastModif, tms);
-        // assertTrue(lastModif.compareTo(tms) == 0);
+        String properties = fileHandler.properties("test.txt");
+        assertEquals("Nom du fichier : " + fileName + "\n" + "Taille du fichier : " + fileSize + " octets\n"
+                + "Chemin absolu du fichier : " + path + fileName + "\n" + "Derniere modification du fichier : "
+                + lastModif, properties);
     }
 }

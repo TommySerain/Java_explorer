@@ -1,17 +1,13 @@
 package co.simplon.alt6.Class;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.sql.Date;
 
 public class FileHandler {
     private String path;
-    private String fileName;
 
-    public FileHandler(String path, String fileName) {
+    public FileHandler(String path) {
         this.path = path;
-        this.fileName = fileName;
     }
 
     public String properties(String fileName) {
@@ -101,16 +97,6 @@ public class FileHandler {
             System.out.println("Le dossier " + folder.getName() + " et son contenu ont été supprimés.");
         } else {
             System.out.println("Le dossier n'existe pas.");
-        }
-    }
-
-    public void deleteFile() {
-        try {
-            String name = this.path + this.fileName;
-            File file = new File(name);
-            file.delete();
-        } catch (Exception e) {
-            System.err.println("Une erreur s'est produite lors de la suppression du fichier : " + e.getMessage());
         }
     }
 }
