@@ -25,12 +25,13 @@ import java.io.IOException;
 import java.util.Stack;
 
 public class NavigateGui extends Application {
-    public boolean isDirectory(String fileName){
-        if (fileName.contains(".")){
+    public boolean isDirectory(String fileName) {
+        if (fileName.contains(".")) {
             return true;
         }
         return false;
     }
+
     @Override
     public void start(Stage primaryStage) throws IOException {
         // SCENE AND BORDERPANE
@@ -114,7 +115,7 @@ public class NavigateGui extends Application {
         propertiesBox.setAlignment(Pos.CENTER);
         Font customFont = new Font("VERDANA", 16);
         textProperties.setFont(customFont);
-        textProperties.setFill(Color.rgb(26,93,203));
+        textProperties.setFill(Color.rgb(26, 93, 203));
 
         // APPEND LISTVIEW INPUT MENUICONS PROPERTIES RECTANGLE
         vbox1.setPadding(new Insets(30));
@@ -158,8 +159,8 @@ public class NavigateGui extends Application {
         file.setOnAction(e -> {
             String selectedValue = listView1.getSelectionModel().getSelectedItem();
             FileHandler file1 = new FileHandler(navigate.path, selectedValue);
-            if (!inputText.getText().isEmpty()){
-                file1.createFolder(inputText.getText());
+            if (!inputText.getText().isEmpty()) {
+                file1.createFile(inputText.getText());
                 listView1.getItems().clear();
                 listView1.getItems().add("..");
                 listView1.getItems().addAll(navigate.ShowFilesList());
@@ -169,7 +170,7 @@ public class NavigateGui extends Application {
         folder.setOnAction(e -> {
             String selectedValue = listView1.getSelectionModel().getSelectedItem();
             FileHandler file1 = new FileHandler(navigate.path, selectedValue);
-            if (!inputText.getText().isEmpty()){
+            if (!inputText.getText().isEmpty()) {
                 file1.createFolder(inputText.getText());
                 listView1.getItems().clear();
                 listView1.getItems().add("..");

@@ -1,6 +1,8 @@
 package co.simplon.alt6.Class;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.sql.Date;
 
 public class FileHandler {
@@ -20,7 +22,9 @@ public class FileHandler {
             long fileSize = file.length();
             String absolutePath = file.getAbsolutePath();
             Date lastModified = new Date(file.lastModified());
-            return "Nom du fichier : " + fileNameProp + "\n" + "Taille du fichier : " + fileSize + " octets\n" + "Chemin absolu du fichier : " + absolutePath + "\n" + "Derniere modification du fichier : " + lastModified;
+            return "Nom du fichier : " + fileNameProp + "\n" + "Taille du fichier : " + fileSize + " octets\n"
+                    + "Chemin absolu du fichier : " + absolutePath + "\n" + "Derniere modification du fichier : "
+                    + lastModified;
         } else {
             return "Le fichier n'existe pas.";
         }
@@ -84,9 +88,12 @@ public class FileHandler {
             if (files != null) {
                 for (File file : files) {
                     if (file.isDirectory()) {
+                        this.path += folderName + "/";
+                        System.out.println("Nous rentrons dans " + file.getName());
                         deleteFolderAndContents(file.getName());
                     } else {
                         file.delete();
+                        System.out.println("Le fichier " + file.getName() + " a été supprimés.");
                     }
                 }
             }
