@@ -26,7 +26,7 @@ public class FileHandler {
         }
     }
 
-    public void createFolder(String folderName) {
+    public boolean createFolder(String folderName) {
         try {
             String name = this.path + folderName;
 
@@ -34,6 +34,7 @@ public class FileHandler {
             if (!file.exists()) {
                 if (file.mkdir()) {
                     System.out.println("Le dossier a été créé avec succès.");
+                    return true;
                 } else {
                     System.out.println("Impossible de créer le dossier.");
                 }
@@ -43,20 +44,25 @@ public class FileHandler {
         } catch (Exception e) {
             System.err.println("Une erreur s'est produite lors de la création du dossier : " + e.getMessage());
         }
+        return false;
     }
 
-    public void updateFileName(String filename, String newName) {
+    public boolean updateFileName(String filename, String newName) {
         try {
             String name = this.path + filename;
             File file = new File(name);
             File newFile = new File(this.path, newName);
-            file.renameTo(newFile);
+            if (file.renameTo(newFile)) {
+                return true;
+            }
+            ;
         } catch (Exception e) {
             System.err.println("Une erreur s'est produite lors de la modification du fichier : " + e.getMessage());
         }
+        return false;
     }
 
-    public void createFile(String fileName) {
+    public boolean createFile(String fileName) {
         try {
             String name = this.path + fileName;
 
@@ -65,6 +71,7 @@ public class FileHandler {
                 // Créez le fichier
                 if (file.createNewFile()) {
                     System.out.println("Le fichier a été créé avec succès.");
+                    return true;
                 } else {
                     System.out.println("Impossible de créer le fichier.");
                 }
@@ -74,9 +81,10 @@ public class FileHandler {
         } catch (Exception e) {
             System.err.println("Une erreur s'est produite lors de la création du fichier : " + e.getMessage());
         }
+        return false;
     }
 
-    public void deleteFolderAndContents(String folderName) {
+    public boolean deleteFolderAndContents(String folderName) {
         String name = this.path + folderName;
         File folder = new File(name);
         if (folder.exists()) {
@@ -90,13 +98,16 @@ public class FileHandler {
                     } else {
                         file.delete();
                         System.out.println("Le fichier " + file.getName() + " a été supprimés.");
+                        return true;
                     }
                 }
             }
             folder.delete();
             System.out.println("Le dossier " + folder.getName() + " et son contenu ont été supprimés.");
+            return true;
         } else {
             System.out.println("Le dossier n'existe pas.");
         }
+        return false;
     }
 }
