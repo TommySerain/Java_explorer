@@ -12,27 +12,23 @@ public class FileHandler {
         this.fileName = fileName;
     }
 
-    public void properties() {
-        String name = this.path + this.fileName;
+    public String properties(String fileName) {
+        String name = this.path + fileName;
         File file = new File(name);
         if (file.exists()) {
-            String fileName = file.getName();
+            String fileNameProp = file.getName();
             long fileSize = file.length();
             String absolutePath = file.getAbsolutePath();
             Date lastModified = new Date(file.lastModified());
-
-            System.out.println("Nom du fichier : " + fileName);
-            System.out.println("Taille du fichier : " + fileSize + " octets");
-            System.out.println("Chemin absolu du fichier : " + absolutePath);
-            System.out.println("Dernière modification du fichier : " + lastModified);
+            return "Nom du fichier : " + fileNameProp + "\n" + "Taille du fichier : " + fileSize + " octets\n" + "Chemin absolu du fichier : " + absolutePath + "\n" + "Derniere modification du fichier : " + lastModified;
         } else {
-            System.out.println("Le fichier n'existe pas.");
+            return "Le fichier n'existe pas.";
         }
     }
 
-    public void createFolder() {
+    public void createFolder(String folderName) {
         try {
-            String name = this.path + this.fileName;
+            String name = this.path + folderName;
 
             File file = new File(name);
             if (!file.exists()) {
@@ -49,9 +45,9 @@ public class FileHandler {
         }
     }
 
-    public void updateFileName(String newName) {
+    public void updateFileName(String filename, String newName) {
         try {
-            String name = this.path + this.fileName;
+            String name = this.path + filename;
             File file = new File(name);
             File newFile = new File(this.path, newName);
             file.renameTo(newFile);
@@ -60,9 +56,9 @@ public class FileHandler {
         }
     }
 
-    public void createFile() {
+    public void createFile(String fileName) {
         try {
-            String name = this.path + this.fileName;
+            String name = this.path + fileName;
 
             File file = new File(name);
             if (!file.exists()) {
@@ -80,15 +76,15 @@ public class FileHandler {
         }
     }
 
-    public void deleteFolderAndContents() {
-        String name = this.path + this.fileName;
+    public void deleteFolderAndContents(String folderName) {
+        String name = this.path + folderName;
         File folder = new File(name);
         if (folder.exists()) {
             File[] files = folder.listFiles();
             if (files != null) {
                 for (File file : files) {
                     if (file.isDirectory()) {
-                        deleteFolderAndContents();
+                        deleteFolderAndContents(file.getName());
                     } else {
                         file.delete();
                     }

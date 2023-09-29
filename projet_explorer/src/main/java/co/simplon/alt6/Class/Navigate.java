@@ -61,29 +61,28 @@ public class Navigate {
             if (fileAction.length > 1) {
                 this.path = oldPath;
                 FileHandler fileHandler = new FileHandler(this.path, fileAction[1]);
-                if (fileAction[0].equals("touch")) {
-                    fileHandler.createFile();
-                }
-                if (fileAction[0].equals("mkdir")) {
-                    fileHandler.createFolder();
-                }
-                if (fileAction[0].equals("prop")) {
-                    fileHandler.properties();
-                }
-                if (fileAction[0].equals("del")) {
-                    fileHandler.deleteFile();
-                }
-                if (fileAction[0].equals("rmdir")) {
-                    fileHandler.deleteFolderAndContents();
-                }
-                if (fileAction[0].equals("change")) {
-                    if (fileAction.length > 2) {
-                        fileHandler.updateFileName(fileAction[2]);
-                    } else {
-                        System.out.println("Veuillez saisir change fichierChoisi fichierDestination");
-                    }
-
-                }
+//                if (fileAction[0].equals("touch")) {
+//                    fileHandler.createFile();
+//                }
+//                if (fileAction[0].equals("mkdir")) {
+//                    fileHandler.createFolder();
+//                }
+//                if (fileAction[0].equals("prop")) {
+//                    fileHandler.properties();
+//                }
+//                if (fileAction[0].equals("del")) {
+//                    fileHandler.deleteFile();
+//                }
+//                if (fileAction[0].equals("rmdir")) {
+//                    fileHandler.deleteFolderAndContents();
+//                }
+//                if (fileAction[0].equals("change")) {
+//                    if (fileAction.length > 2) {
+//                        fileHandler.updateFileName(fileAction[2]);
+//                    } else {
+//                        System.out.println("Veuillez saisir change fichierChoisi fichierDestination");
+//                    }
+//                }
             }
 
         }
