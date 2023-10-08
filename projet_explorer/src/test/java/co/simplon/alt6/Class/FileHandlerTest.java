@@ -1,6 +1,8 @@
 package co.simplon.alt6.Class;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,70 +35,70 @@ public class FileHandlerTest {
     @Order(0)
     void testCreateFolder() {
         boolean folderIsCreated = fileHandler.createFolder("testCreate");
-        assertEquals(folderIsCreated, true);
+        assertTrue(folderIsCreated);
     }
 
     @Test
     @Order(1)
     void testCreateFolderFalse() {
         boolean folderIsCreated = fileHandler.createFolder("testCreate*");
-        assertEquals(folderIsCreated, false);
+        assertFalse(folderIsCreated);
     }
 
     @Test
     @Order(2)
     void createFile() {
         boolean fileIsCreated = fileHandler.createFile("testCreateFile.txt");
-        assertEquals(fileIsCreated, true);
+        assertTrue(fileIsCreated);
     }
 
     @Test
     @Order(3)
     void createFileFalse() {
         boolean fileIsCreated = fileHandler.createFile("testCreateFile*.txt");
-        assertEquals(fileIsCreated, false);
+        assertFalse(fileIsCreated);
     }
 
     @Test
     @Order(4)
     void testUpdateFileName() {
         boolean folderIsModified = fileHandler.updateFileName("test2.txt", "testupdate.txt");
-        assertEquals(folderIsModified, true);
+        assertTrue(folderIsModified);
     }
 
     @Test
     @Order(5)
     void testUpdateFileNameFalse() {
         boolean folderIsModified = fileHandler.updateFileName("testupdate.txt", "testCreateFile*.txt");
-        assertEquals(folderIsModified, false);
+        assertFalse(folderIsModified);
     }
 
     @Test
     @Order(6)
     void testDeleteFolder() {
         boolean folderIsDelete = fileHandler.deleteFolderAndContents("testCreate");
-        assertEquals(folderIsDelete, true);
+        assertTrue(folderIsDelete);
     }
 
     @Test
     @Order(7)
     void testDeleteFolderFalse() {
         boolean folderIsDelete = fileHandler.deleteFolderAndContents("testUnknownFolder");
-        assertEquals(folderIsDelete, false);
+        assertFalse(folderIsDelete);
     }
 
     @Test
     @Order(8)
     void testDeleteFile() {
         boolean folderIsDelete = fileHandler.deleteFolderAndContents("testupdate.txt");
-        assertEquals(folderIsDelete, true);
+        assertTrue(folderIsDelete);
     }
 
     @Test
     @Order(9)
     void testDeleteFileFalse() {
         boolean folderIsDelete = fileHandler.deleteFolderAndContents("testUnknownFile.txt");
-        assertEquals(folderIsDelete, false);
+        assertFalse(folderIsDelete);
     }
 
     @Test
@@ -127,6 +129,6 @@ public class FileHandlerTest {
         } else {
             isEqual = false;
         }
-        assertEquals(isEqual, false);
+        assertFalse(isEqual);
     }
 }
